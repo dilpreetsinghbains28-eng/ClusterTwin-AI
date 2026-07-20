@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports Center - Aura Industrial AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#0b1326",
+                      "on-surface-variant": "#bcc9c6",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-tertiary-fixed": "#370e00",
+                      "surface-container-high": "#222a3d",
+                      "tertiary-container": "#d27956",
+                      "surface-tint": "#6bd8cb",
+                      "on-primary-fixed": "#00201d",
+                      "on-surface": "#dae2fd",
+                      "on-secondary-fixed": "#001a42",
+                      "inverse-on-surface": "#283044",
+                      "on-primary-fixed-variant": "#005049",
+                      "surface-container-highest": "#2d3449",
+                      "inverse-primary": "#006a61",
+                      "background": "#0b1326",
+                      "on-secondary": "#002e6a",
+                      "on-error-container": "#ffdad6",
+                      "tertiary": "#ffb59a",
+                      "on-secondary-container": "#e6ecff",
+                      "tertiary-fixed-dim": "#ffb59a",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "primary-container": "#29a195",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-primary-container": "#00302b",
+                      "primary-fixed": "#89f5e7",
+                      "outline": "#879391",
+                      "on-tertiary-fixed-variant": "#773215",
+                      "on-background": "#dae2fd",
+                      "on-primary": "#003732",
+                      "secondary-container": "#0566d9",
+                      "surface-container": "#171f33",
+                      "surface": "#0b1326",
+                      "surface-variant": "#2d3449",
+                      "error-container": "#93000a",
+                      "inverse-surface": "#dae2fd",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "on-tertiary-container": "#4f1700",
+                      "surface-bright": "#31394d",
+                      "tertiary-fixed": "#ffdbce",
+                      "primary": "#6bd8cb",
+                      "surface-container-lowest": "#060e20",
+                      "on-tertiary": "#591c02",
+                      "outline-variant": "#3d4947",
+                      "secondary": "#adc6ff",
+                      "primary-fixed-dim": "#6bd8cb",
+                      "surface-container-low": "#131b2e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "section-gap": "64px",
+                      "gutter": "24px",
+                      "container-padding-mobile": "16px",
+                      "unit": "4px",
+                      "container-padding-desktop": "32px"
+              },
+              "fontFamily": {
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "display-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-base": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-base": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        
+        .surface-glass {
+            background: rgba(19, 27, 46, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .border-glow:focus-within, .border-glow:hover {
+            border-color: rgba(107, 216, 203, 0.5);
+            box-shadow: 0 0 12px 0 rgba(107, 216, 203, 0.2), inset 0 0 8px 0 rgba(107, 216, 203, 0.1);
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, rgba(107, 216, 203, 1) 0%, rgba(41, 161, 149, 1) 100%);
+        }
+        
+        .primary-gradient-hover:hover {
+             box-shadow: 0 0 8px 2px rgba(107, 216, 203, 0.4);
+        }
+
+        .bg-glow-subsurface {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(107, 216, 203, 0.1) 0%, rgba(11, 19, 38, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Custom scrollbar for data tables */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(19, 27, 46, 0.2); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(107, 216, 203, 0.3); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 216, 203, 0.5); 
+        }
+    </style>
+</head>
+<body class="font-body-base text-body-base antialiased selection:bg-primary/30 selection:text-primary overflow-x-hidden relative">
+<!-- Ambient Background Glows -->
+<div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-container/10 blur-[150px]"></div>
+</div>
+<!-- TopNavBar (Shared Component) -->
+<nav class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-white/10 shadow-[0_0_20px_rgba(107,216,203,0.1)] hidden md:flex justify-between items-center px-gutter h-16">
+<div class="flex items-center gap-8">
+<div class="font-display-lg text-display-lg font-bold text-primary tracking-tighter" style="font-size: 24px; line-height: 32px;">Aura Industrial AI</div>
+<div class="flex space-x-6">
+<!-- Navigation Links with Active State Logic for 'Reports Center' -->
+<a class="text-primary border-b-2 border-primary pb-1 font-body-base text-body-base flex items-center hover:bg-white/5 transition-all active:scale-95 duration-200" href="#">
+                    Reports Center
+                </a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-base text-body-base flex items-center hover:bg-white/5 transition-all active:scale-95 duration-200 pb-1 border-b-2 border-transparent" href="#">
+                    Gov Dashboard
+                </a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-base text-body-base flex items-center hover:bg-white/5 transition-all active:scale-95 duration-200 pb-1 border-b-2 border-transparent" href="#">
+                    Twin Explorer
+                </a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search Bar placeholder (search_bar: "on_left" logic - placed left of trailing icons) -->
+<div class="relative hidden lg:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="bg-[#1E293B] border-none rounded text-body-sm font-body-sm pl-10 pr-4 py-1.5 text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary w-48 transition-all duration-300 group-hover:w-64" placeholder="Search reports..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 hover:bg-white/5 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 hover:bg-white/5 rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-white/10">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A macro photography shot of an industrial administrator profile portrait. A stern, focused individual in a high-tech facility, lit by cool blue and teal rim lights typical of a futuristic glassmorphic command center. The lighting is cinematic and dramatic, emphasizing expertise and authority in a dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9Y_RIHt_K4VJGiTr1pA4OYxLjSG71OiTN8U7I6F-iExsf7cHeve1rmxQ-UywXAOuZXo85-GqISJ8n8LekRvXajSEhdSpEb2KJ71Yt5KMFvJmnPJE8YzaOskZS0V69le7hnv-L6ysE4UgInA5Y-tn3xeeK2b5juvQGpF8lEuupypmfHvbWcoZ68SslvkVY0yo5eJ8fGoBnGY4nPy8AX991QcBpdf-SlRKBAd1-AjfL7prKprj04PEJdWcs0KOK1lUP7aKmlDwx3nM"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Shared Component) - Mobile Hidden, Desktop Fixed -->
+<aside class="bg-surface-container-low/50 backdrop-blur-2xl fixed left-0 top-16 h-[calc(100vh-64px)] w-64 border-r border-white/5 hidden md:flex flex-col py-6 px-4 space-y-2 z-40">
+<!-- Header Info -->
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-primary/30 overflow-hidden shadow-[0_0_10px_rgba(107,216,203,0.2)]">
+<img alt="Cluster Monitor" class="w-full h-full object-cover" data-alt="Abstract 3d render of an industrial cluster node representing a cluster monitor. Glowing teal and deep blue geometric nodes connected by fine laser-like lines in a dark, empty void. High-tech, futuristic data visualization aesthetic fitting a premium industrial AI application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmOZDrXYlSobiovL7LcBJ97ys9pwcozjEy3F0ypcdWUvCLOJI4Y_qFwNxswkITIYVN8HrcBI6iuvw6LAyKLIxjSkJIw_r_o9DB85cULQt4aT_bKs8sZThZ0ObLl1rWzSesZtceryVBMPaXYiS1Xa49wxIf8m98cvd8i6vqEYduUKPGDG3zpRf7UpIIACX2336m1mM1p8X6BrrLwR8AGyLORXKM9R9ZXm1xsYuCPUPy6970PsCRImAQqUKhpYaooJ1mPJjqgtdwXkY"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface" style="font-size: 16px; line-height: 20px;">Industrial Hub</h3>
+<p class="font-label-mono text-label-mono text-primary/70">District v4.2</p>
+</div>
+</div>
+<!-- Navigation Tabs - Active logic based on generic intent (Analysis/Reports) -->
+<div class="flex-1 flex flex-col space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+<span class="font-label-mono text-label-mono">Production</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">build</span>
+<span class="font-label-mono text-label-mono">Maintenance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span class="font-label-mono text-label-mono">Energy</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<span class="font-label-mono text-label-mono">Employment</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">map</span>
+<span class="font-label-mono text-label-mono">Districts</span>
+</a>
+<!-- Marking Analysis as active closest semantic match for Reports Center -->
+<a class="flex items-center gap-3 px-3 py-2 rounded bg-primary-container/20 text-primary border-r-2 border-primary hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-label-mono text-label-mono">Analysis</span>
+</a>
+</div>
+<!-- Footer -->
+<div class="mt-auto pt-4 border-t border-white/5 flex flex-col space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-label-mono text-label-mono">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-label-mono text-label-mono">Log Out</span>
+</a>
+<button class="mt-4 primary-gradient primary-gradient-hover text-on-primary font-label-mono text-label-mono py-2 px-4 rounded w-full flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                Export Audit
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-16 md:pl-64 min-h-screen p-container-padding-mobile md:p-container-padding-desktop lg:p-10 transition-all duration-300">
+<!-- Header & Filters -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">Reports Center</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">Automated audit and documentation portal for Cluster v4.2</p>
+</div>
+<div class="flex flex-wrap gap-3 w-full lg:w-auto">
+<div class="relative group border-glow surface-glass rounded p-1 flex items-center">
+<span class="material-symbols-outlined text-on-surface-variant ml-2 text-[18px]">calendar_today</span>
+<select class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 appearance-none pl-2 pr-8 cursor-pointer">
+<option class="bg-surface-container" value="7d">Last 7 Days</option>
+<option class="bg-surface-container" selected="" value="30d">Last 30 Days</option>
+<option class="bg-surface-container" value="90d">Last 90 Days</option>
+<option class="bg-surface-container" value="ytd">Year to Date</option>
+</select>
+<span class="material-symbols-outlined text-on-surface-variant absolute right-2 pointer-events-none text-[18px]">expand_more</span>
+</div>
+<div class="relative group border-glow surface-glass rounded p-1 flex items-center">
+<span class="material-symbols-outlined text-on-surface-variant ml-2 text-[18px]">factory</span>
+<select class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 appearance-none pl-2 pr-8 cursor-pointer">
+<option class="bg-surface-container" value="all">All Clusters</option>
+<option class="bg-surface-container" value="alpha">Alpha Sector</option>
+<option class="bg-surface-container" value="beta">Beta Sector</option>
+</select>
+<span class="material-symbols-outlined text-on-surface-variant absolute right-2 pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- AI Summary Hero -->
+<section class="mb-section-gap relative">
+<div class="bg-glow-subsurface top-1/2 left-1/4 -translate-y-1/2"></div>
+<div class="surface-glass rounded-xl p-6 md:p-8 relative overflow-hidden">
+<!-- Decorative AI accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/5 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-primary-container/20 rounded-lg border border-primary/20 shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-3 flex items-center gap-2">
+                            Aura AI Synthesis
+                            <span class="font-label-mono text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded border border-primary/30 uppercase tracking-wider">Live Analysis</span>
+</h2>
+<p class="font-body-base text-body-base text-on-surface-variant leading-relaxed max-w-4xl">
+                            Overall cluster performance remains stable with an OEE of <span class="text-primary font-bold">84.2%</span> across Alpha and Beta sectors over the last 30 days. Energy consumption saw a <span class="text-primary font-bold">4.1% reduction</span> following the automated HVAC optimizations deployed on the 12th. Note: Predictive maintenance models indicate a high probability (88%) of spindle wear on Unit-C3 within the next 72 hours.
+                        </p>
+<div class="mt-6 flex flex-wrap gap-4">
+<button class="bg-transparent border border-outline-variant hover:bg-white/5 hover:border-primary/50 text-on-surface font-label-mono text-label-mono py-1.5 px-4 rounded flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+                                View Narrative Walkthrough
+                            </button>
+<button class="bg-transparent border border-outline-variant hover:bg-white/5 hover:border-primary/50 text-on-surface font-label-mono text-label-mono py-1.5 px-4 rounded flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[16px]">summarize</span>
+                                Generate Executive Brief
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Reports Grid -->
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 border-b border-white/10 pb-4">Standard Reports Catalog</h2>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6 pb-20">
+<!-- Category: Production -->
+<div class="surface-glass rounded-xl p-5 flex flex-col relative group hover:border-primary/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none"></div>
+<div class="flex justify-between items-center mb-5 z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-[20px]">precision_manufacturing</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Production Output</h3>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-5 z-10">
+<!-- Daily -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">DAILY</span>
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: P-D-842</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Shift Yield</span>
+</div>
+</div>
+<!-- Weekly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">WEEKLY</span>
+<span class="h-2 w-2 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: P-W-104</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">OEE Variance</span>
+</div>
+</div>
+<!-- Monthly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">MONTHLY</span>
+<span class="h-2 w-2 rounded-full bg-primary/40"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: P-M-012</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Throughput</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-auto pt-3 border-t border-white/10 flex justify-end gap-2 z-10">
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Share Category">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Export Excel">
+<span class="material-symbols-outlined text-[18px]">table_chart</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Download PDF">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</div>
+</div>
+<!-- Category: Energy -->
+<div class="surface-glass rounded-xl p-5 flex flex-col relative group hover:border-primary/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none"></div>
+<div class="flex justify-between items-center mb-5 z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-[20px]">bolt</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Energy Consumption</h3>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-5 z-10">
+<!-- Daily -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">DAILY</span>
+<span class="h-2 w-2 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: E-D-842</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Peak Load</span>
+</div>
+</div>
+<!-- Weekly -->
+<div class="bg-surface-container-low border border-primary/30 rounded p-3 hover:border-primary transition-colors cursor-pointer group/card flex flex-col justify-between h-24 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="flex justify-between items-start relative z-10">
+<span class="font-label-mono text-[11px] text-primary transition-colors">WEEKLY</span>
+<span class="material-symbols-outlined text-primary text-[14px] animate-spin">sync</span>
+</div>
+<div class="relative z-10">
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: E-W-104</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Grid Usage</span>
+</div>
+</div>
+<!-- Monthly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">MONTHLY</span>
+<span class="h-2 w-2 rounded-full bg-primary/40"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: E-M-012</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Cost Breakdown</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-auto pt-3 border-t border-white/10 flex justify-end gap-2 z-10">
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Share Category">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Export Excel">
+<span class="material-symbols-outlined text-[18px]">table_chart</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Download PDF">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</div>
+</div>
+<!-- Category: Maintenance -->
+<div class="surface-glass rounded-xl p-5 flex flex-col relative group hover:border-primary/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none"></div>
+<div class="flex justify-between items-center mb-5 z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-[20px]">build</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Asset Maintenance</h3>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-5 z-10">
+<!-- Daily -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">DAILY</span>
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: M-D-842</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Active Tickets</span>
+</div>
+</div>
+<!-- Weekly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">WEEKLY</span>
+<span class="h-2 w-2 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: M-W-104</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">MTTR/MTBF</span>
+</div>
+</div>
+<!-- Monthly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">MONTHLY</span>
+<span class="h-2 w-2 rounded-full bg-primary/40"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: M-M-012</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Predictive Log</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-auto pt-3 border-t border-white/10 flex justify-end gap-2 z-10">
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Share Category">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Export Excel">
+<span class="material-symbols-outlined text-[18px]">table_chart</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Download PDF">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</div>
+</div>
+<!-- Category: Carbon -->
+<div class="surface-glass rounded-xl p-5 flex flex-col relative group hover:border-primary/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none"></div>
+<div class="flex justify-between items-center mb-5 z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-[20px]">co2</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Carbon Footprint</h3>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-5 z-10">
+<!-- Daily -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">DAILY</span>
+<span class="h-2 w-2 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: C-D-842</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Est. Emissions</span>
+</div>
+</div>
+<!-- Weekly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">WEEKLY</span>
+<span class="h-2 w-2 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: C-W-104</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Scope 1 &amp; 2</span>
+</div>
+</div>
+<!-- Monthly -->
+<div class="bg-surface-container-low border border-white/5 rounded p-3 hover:border-primary/40 transition-colors cursor-pointer group/card flex flex-col justify-between h-24">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-[11px] text-on-surface-variant group-hover/card:text-primary transition-colors">MONTHLY</span>
+<span class="h-2 w-2 rounded-full bg-primary/40"></span>
+</div>
+<div>
+<span class="font-label-mono text-[10px] text-on-surface-variant block mb-1">ID: C-M-012</span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover/card:text-white">Compliance</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-auto pt-3 border-t border-white/10 flex justify-end gap-2 z-10">
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Share Category">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Export Excel">
+<span class="material-symbols-outlined text-[18px]">table_chart</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-all" title="Download PDF">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

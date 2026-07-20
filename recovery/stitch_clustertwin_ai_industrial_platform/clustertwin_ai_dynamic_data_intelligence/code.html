@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClusterTwin AI - Industrial Intelligence Refined</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#bcc9c6",
+                        "secondary": "#adc6ff",
+                        "primary-fixed": "#89f5e7",
+                        "surface-variant": "#2d3449",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#3d4947",
+                        "surface-dim": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "on-background": "#dae2fd",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-tertiary-fixed-variant": "#773215",
+                        "surface": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-container": "#171f33",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-container-lowest": "#060e20",
+                        "on-primary-fixed-variant": "#005049",
+                        "background": "#0b1326",
+                        "tertiary": "#ffb59a",
+                        "surface-container-low": "#131b2e",
+                        "inverse-on-surface": "#283044",
+                        "on-secondary-container": "#e6ecff",
+                        "primary-container": "#29a195",
+                        "on-primary-container": "#00302b",
+                        "on-primary-fixed": "#00201d",
+                        "on-tertiary-fixed": "#370e00",
+                        "inverse-primary": "#006a61",
+                        "on-primary": "#003732",
+                        "outline": "#879391",
+                        "on-tertiary-container": "#4f1700",
+                        "on-error": "#690005",
+                        "on-tertiary": "#591c02",
+                        "secondary-container": "#0566d9",
+                        "on-secondary-fixed": "#001a42",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-secondary": "#002e6a",
+                        "primary": "#6bd8cb",
+                        "error": "#ffb4ab",
+                        "on-surface": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "tertiary-container": "#d27956",
+                        "surface-tint": "#6bd8cb",
+                        "tertiary-fixed-dim": "#ffb59a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "container-padding-desktop": "32px",
+                        "container-padding-mobile": "16px",
+                        "section-gap": "64px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter", "sans-serif"],
+                        "label-mono": ["JetBrains Mono", "monospace"],
+                        "display-lg": ["Geist", "sans-serif"],
+                        "display-lg-mobile": ["Geist", "sans-serif"],
+                        "headline-md": ["Geist", "sans-serif"],
+                        "body-base": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .surface-glass {
+            background: rgba(11, 19, 38, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(135, 147, 145, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .border-glow {
+            border: 1px solid rgba(107, 216, 203, 0.3);
+            box-shadow: inset 0 0 10px rgba(107, 216, 203, 0.1);
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #29a195 0%, #6bd8cb 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #dae2fd 0%, #6bd8cb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glow-overlay {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(107, 216, 203, 0.15) 0%, rgba(11, 19, 38, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b1326; }
+        ::-webkit-scrollbar-thumb { background: #2d3449; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3d4947; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base antialiased overflow-x-hidden min-h-screen flex flex-col relative">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center w-full px-container-padding-desktop max-w-7xl mx-auto h-20">
+<div class="flex items-center gap-gutter">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="#">ClusterTwin AI</a>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-body-base text-body-base text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300 scale-95 active:scale-90" href="#platform">Platform</a>
+<a class="font-body-base text-body-base text-on-surface-variant font-medium hover:text-primary hover:bg-primary/10 transition-all duration-300 px-2 py-1 rounded scale-95 active:scale-90" href="#clusters">Clusters</a>
+<a class="font-body-base text-body-base text-on-surface-variant font-medium hover:text-primary hover:bg-primary/10 transition-all duration-300 px-2 py-1 rounded scale-95 active:scale-90" href="#twin-engine">Twin Engine</a>
+<a class="font-body-base text-body-base text-on-surface-variant font-medium hover:text-primary hover:bg-primary/10 transition-all duration-300 px-2 py-1 rounded scale-95 active:scale-90" href="#pricing">Pricing</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="hidden md:block font-body-base text-body-base text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="#">Login</a>
+<a class="primary-gradient text-on-primary font-bold font-body-base text-body-base px-6 py-2 rounded-DEFAULT hover:shadow-[0_0_12px_rgba(107,216,203,0.5)] transition-all duration-300" href="#">Launch Console</a>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center justify-center overflow-hidden pt-section-gap pb-section-gap px-container-padding-mobile md:px-container-padding-desktop">
+<div class="absolute inset-0 z-0 opacity-40">
+<!-- STITCH_THREEJS_START:ANIMATION_7 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_7" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_7');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  (function() {
+  const container = document.getElementById('threejs-container-ANIMATION_5');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  
+  const scene = new THREE.Scene();
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+  const directionalLight = new THREE.DirectionalLight(0x0D9488, 1);
+  directionalLight.position.set(5, 5, 5);
+  scene.add(directionalLight);
+
+  // Raycaster for interactions
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+  let hoveredNode = null;
+
+  // Factory Platform (Base)
+  const baseGeo = new THREE.BoxGeometry(4, 0.2, 4);
+  const baseMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, transparent: true, opacity: 0.8 });
+  const base = new THREE.Mesh(baseGeo, baseMat);
+  scene.add(base);
+
+  // Animated 'Smart' Elements (Representing MSME nodes)
+  const nodes = [];
+  const nodeGeo = new THREE.BoxGeometry(0.5, 1, 0.5);
+  
+  for(let i = 0; i < 5; i++) {
+    const nodeMat = new THREE.MeshPhongMaterial({ 
+        color: 0x3B82F6,
+        emissive: 0x3B82F6,
+        emissiveIntensity: 0
+    });
+    const node = new THREE.Mesh(nodeGeo, nodeMat);
+    node.position.x = (Math.random() - 0.5) * 3;
+    node.position.z = (Math.random() - 0.5) * 3;
+    node.position.y = 0.6;
+    node.userData = { 
+        originalY: 0.6, 
+        originalColor: 0x3B82F6,
+        phase: i,
+        interactive: true
+    };
+    scene.add(node);
+    nodes.push(node);
+  }
+
+  // Animated Data Flow Lines
+  const flowLines = [];
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x0D9488, transparent: true, opacity: 0.3 });
+  
+  // Create pulses/packets for flow
+  const pulses = [];
+  const pulseGeo = new THREE.SphereGeometry(0.04, 8, 8);
+  const pulseMat = new THREE.MeshBasicMaterial({ color: 0x5EEAD4 });
+
+  // Connect nodes in a web
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+        const points = [];
+        points.push(nodes[i].position);
+        points.push(nodes[j].position);
+        
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const line = new THREE.Line(geometry, lineMat);
+        scene.add(line);
+        flowLines.push({ line, startNode: nodes[i], endNode: nodes[j] });
+
+        // Add a pulse for this connection
+        const pulse = new THREE.Mesh(pulseGeo, pulseMat);
+        pulse.userData = { 
+            t: Math.random(), 
+            speed: 0.002 + Math.random() * 0.005,
+            start: nodes[i],
+            end: nodes[j]
+        };
+        scene.add(pulse);
+        pulses.push(pulse);
+    }
+  }
+
+  camera.position.set(5, 5, 5);
+  camera.lookAt(0, 0, 0);
+
+  function onMouseMove(event) {
+    const rect = container.getBoundingClientRect();
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  }
+
+  function onClick(event) {
+    if (hoveredNode) {
+        hoveredNode.scale.set(1.5, 1.5, 1.5);
+        setTimeout(() => {
+            if (hoveredNode) hoveredNode.scale.set(1.2, 1.2, 1.2);
+        }, 150);
+    }
+  }
+
+  window.addEventListener('mousemove', onMouseMove);
+  window.addEventListener('click', onClick);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(nodes);
+
+    if (intersects.length > 0) {
+        if (hoveredNode !== intersects[0].object) {
+            if (hoveredNode) {
+                hoveredNode.material.emissiveIntensity = 0;
+                hoveredNode.scale.set(1, 1, 1);
+            }
+            hoveredNode = intersects[0].object;
+            hoveredNode.material.emissiveIntensity = 0.5;
+            hoveredNode.scale.set(1.2, 1.2, 1.2);
+            container.style.cursor = 'pointer';
+        }
+    } else {
+        if (hoveredNode) {
+            hoveredNode.material.emissiveIntensity = 0;
+            hoveredNode.scale.set(1, 1, 1);
+            hoveredNode = null;
+            container.style.cursor = 'default';
+        }
+    }
+
+    const time = Date.now() * 0.001;
+    nodes.forEach((node, i) => {
+        const targetY = node.userData.originalY + Math.sin(time * 2 + node.userData.phase) * 0.2;
+        node.position.y = THREE.MathUtils.lerp(node.position.y, targetY, 0.1);
+        node.rotation.y += 0.01;
+        if (hoveredNode === node) {
+            node.rotation.y += 0.05;
+        }
+    });
+
+    // Update lines and pulses
+    flowLines.forEach(flow => {
+        flow.line.geometry.setFromPoints([flow.startNode.position, flow.endNode.position]);
+    });
+
+    pulses.forEach(pulse => {
+        pulse.userData.t += pulse.userData.speed;
+        if (pulse.userData.t > 1) pulse.userData.t = 0;
+        
+        pulse.position.lerpVectors(pulse.userData.start.position, pulse.userData.end.position, pulse.userData.t);
+        // Add a bit of glow based on time
+        pulse.scale.setScalar(0.8 + Math.sin(time * 10) * 0.2);
+    });
+    
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  });
+
+  animate();
+})();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_7 -->
+</div>
+<div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full surface-glass w-fit border-glow">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-mono text-label-mono text-primary">SYSTEM ONLINE V2.4</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-gradient leading-tight">
+                        Transform MSME Clusters with AI Digital Twins
+                    </h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant font-normal max-w-3xl">
+                        The premier AI-powered Shared Digital Twin Platform for Industrial Clusters. Efficiency, resilience, and growth for every factory.
+                    </p>
+<div class="flex flex-wrap items-center gap-4 mt-4">
+<button class="primary-gradient text-on-primary font-bold px-8 py-3 rounded-lg hover:shadow-[0_0_15px_rgba(107,216,203,0.6)] transition-all duration-300 flex items-center gap-2">
+<span>Get Started</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+<button class="surface-glass border-glow text-on-surface font-bold px-8 py-3 rounded-lg hover:bg-primary/10 transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">play_circle</span>
+<span>Live Demo</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glow-overlay" style="top: 20%; left: -10%;"></div>
+<div class="glow-overlay" style="bottom: 10%; right: -5%;"></div>
+</section>
+<!-- Stats Section -->
+<section class="py-12 border-y border-outline-variant/30 bg-surface-container-lowest/50 relative z-10">
+<div class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-outline-variant/30">
+<div class="flex flex-col items-center justify-center p-4">
+<span class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight font-bold drop-shadow-[0_0_15px_rgba(107,216,203,0.5)]">500+</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant mt-2 uppercase tracking-widest">Factories Connected</span>
+</div>
+<div class="flex flex-col items-center justify-center p-4">
+<span class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight font-bold drop-shadow-[0_0_15px_rgba(107,216,203,0.5)]">99%</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant mt-2 uppercase tracking-widest">AI Accuracy</span>
+</div>
+<div class="flex flex-col items-center justify-center p-4">
+<span class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight font-bold drop-shadow-[0_0_15px_rgba(107,216,203,0.5)]">30%</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant mt-2 uppercase tracking-widest">Energy Saved</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full pt-section-gap pb-8 border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter px-container-padding-mobile md:px-container-padding-desktop max-w-7xl mx-auto">
+<div class="lg:col-span-2 flex flex-col gap-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">ClusterTwin AI</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+                    © 2024 ClusterTwin AI. Industrial Intelligence Refined.
+                </p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-mono text-label-mono text-primary font-bold mb-2">LEGAL</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-mono text-label-mono text-primary font-bold mb-2">SYSTEM</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Security</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100 flex items-center gap-2" href="#">Status <span class="w-1.5 h-1.5 rounded-full bg-primary"></span></a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-mono text-label-mono text-primary font-bold mb-2">DEVELOPERS</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">API Docs</a>
+</div>
+</div>
+</footer>
+</body></html>

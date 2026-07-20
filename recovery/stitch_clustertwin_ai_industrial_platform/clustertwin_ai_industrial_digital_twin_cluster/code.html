@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Twin - ClusterTwin Forge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#2d3449",
+                    "on-primary": "#003732",
+                    "on-secondary-fixed": "#001a42",
+                    "tertiary-fixed": "#ffdbce",
+                    "on-tertiary": "#591c02",
+                    "on-background": "#dae2fd",
+                    "primary-container": "#29a195",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-container": "#d27956",
+                    "outline-variant": "#3d4947",
+                    "surface-container": "#171f33",
+                    "primary": "#6bd8cb",
+                    "on-tertiary-container": "#4f1700",
+                    "on-secondary": "#002e6a",
+                    "on-surface": "#dae2fd",
+                    "primary-fixed": "#89f5e7",
+                    "inverse-on-surface": "#283044",
+                    "surface-container-highest": "#2d3449",
+                    "on-primary-fixed-variant": "#005049",
+                    "outline": "#879391",
+                    "secondary": "#adc6ff",
+                    "on-primary-fixed": "#00201d",
+                    "surface-tint": "#6bd8cb",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary-fixed": "#370e00",
+                    "surface-bright": "#31394d",
+                    "surface-dim": "#0b1326",
+                    "background": "#0b1326",
+                    "on-primary-container": "#00302b",
+                    "surface-container-low": "#131b2e",
+                    "inverse-primary": "#006a61",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "tertiary": "#ffb59a",
+                    "surface": "#0b1326",
+                    "on-error": "#690005",
+                    "inverse-surface": "#dae2fd",
+                    "surface-container-lowest": "#060e20",
+                    "on-surface-variant": "#bcc9c6",
+                    "on-secondary-fixed-variant": "#004395",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "primary-fixed-dim": "#6bd8cb",
+                    "on-tertiary-fixed-variant": "#773215",
+                    "secondary-fixed": "#d8e2ff",
+                    "secondary-container": "#0566d9",
+                    "on-secondary-container": "#e6ecff",
+                    "error": "#ffb4ab",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap": "64px",
+                    "container-padding-desktop": "32px",
+                    "container-padding-mobile": "16px",
+                    "unit": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": [
+                            "Geist"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "Geist"
+                    ],
+                    "label-mono": [
+                            "JetBrains Mono"
+                    ],
+                    "display-lg": [
+                            "Geist"
+                    ],
+                    "body-base": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-mono": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-base": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Futuristic Glassmorphism Utilities */
+        .surface-glass {
+            background-color: rgba(23, 31, 51, 0.6); /* surface-container with opacity */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .border-glow {
+            border: 1px solid rgba(107, 216, 203, 0.3); /* primary color */
+            transition: all 0.3s ease;
+        }
+        .border-glow:hover {
+            border-color: rgba(107, 216, 203, 0.8);
+            box-shadow: 0 0 15px rgba(107, 216, 203, 0.3);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #29a195 0%, #006a61 100%);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(107, 216, 203, 0.5);
+        }
+        .radial-glow {
+            background: radial-gradient(circle at center, rgba(107, 216, 203, 0.15) 0%, transparent 70%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(107, 216, 203, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 216, 203, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(107,216,203,0.1)] flex justify-between items-center w-full px-gutter h-16 fixed top-0 z-50">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">ClusterTwin Forge</span>
+</div>
+<div class="flex items-center gap-6 hidden md:flex">
+<!-- Active Navigation Logic: Clusters is active for Digital Twin -->
+<a class="text-on-surface-variant hover:bg-primary/10 transition-colors duration-200 active:scale-95 transition-transform px-3 py-2 rounded-md font-label-mono text-label-mono flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span>Overview</a>
+<a class="text-primary font-bold border-b-2 border-primary hover:bg-primary/10 transition-colors duration-200 active:scale-95 transition-transform px-3 py-2 font-label-mono text-label-mono flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">hub</span>Clusters</a>
+<a class="text-on-surface-variant hover:bg-primary/10 transition-colors duration-200 active:scale-95 transition-transform px-3 py-2 rounded-md font-label-mono text-label-mono flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[18px]">precision_manufacturing</span>Assets</a>
+<a class="text-on-surface-variant hover:bg-primary/10 transition-colors duration-200 active:scale-95 transition-transform px-3 py-2 rounded-md font-label-mono text-label-mono flex items-center gap-2" href="#"><span class="material-symbols-outlined text-[18px]">factory</span>Production</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-primary/10 p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-primary/10 p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<button class="text-primary font-label-mono text-label-mono border border-outline-variant rounded px-3 py-1 hover:bg-primary/10 transition-colors">Support</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A futuristic, hyper-realistic profile avatar of a synthetic human operator. The avatar is illuminated by cool, teal and blue ambient lighting from a holographic display. The background is a dark, abstract server room with glowing data streams. Highly detailed, cinematic lighting, 8k resolution, conveying a high-tech corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALPInMqQAxcBdqzbLle5ZvJ2kQgsq-eOG2CTtdWiy-dq0gQNC0pnQU_5IZ85WQGxlhc85WpGMHgYUDOzSJ8koAoyWUwHFGwxMSoLTSe5DoLytkzD-mGCTOW0fcqedde27K3zrOR1Yn_bWPLXOQSpBU9zer-zvwbH359oz4dMFDva7uCTDLnpEKaqIoO1eO5QySEvqQAx1cHhIaBoLgDE14AF6hQsHNWx6Nmnx1-pz3PtMzeSCMrhcAdpzF5cieiZ4AopFXNB01xiU"/>
+</div>
+</div>
+</header>
+<!-- Main Layout Grid -->
+<main class="flex-1 flex pt-16 h-full relative overflow-hidden">
+<!-- 1. Interactive Factory Canvas (Background/Central) -->
+<div class="absolute inset-0 z-0 w-full h-full bg-[#0F172A]">
+<div class="absolute inset-0 radial-glow z-0"></div>
+<!-- Embedded WebGL Shader for 3D Factory Twin -->
+
+<!-- Overlay to darken corners and focus center -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 z-20 pointer-events-none"></div>
+</div>
+<!-- Left Sidebar (Collapsible Nav - Optional, keeping minimal for twin view) -->
+<!-- Suppressing standard SideNavBar to maximize canvas, using a mini-nav overlay instead -->
+<div class="z-30 absolute left-4 top-24 flex flex-col gap-2">
+<button class="w-10 h-10 surface-glass rounded-lg flex items-center justify-center text-primary border-glow hover:bg-primary/10 transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<button class="w-10 h-10 surface-glass rounded-lg flex items-center justify-center text-primary border-glow hover:bg-primary/10 transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<button class="w-10 h-10 surface-glass rounded-lg flex items-center justify-center text-primary border-glow hover:bg-primary/10 transition-colors mt-4" title="Reset View">
+<span class="material-symbols-outlined text-[20px]">center_focus_strong</span>
+</button>
+</div>
+<!-- Right Side Overlays Grid -->
+<div class="z-30 absolute right-gutter top-24 bottom-gutter flex flex-col gap-4 w-96 max-w-[90vw] pointer-events-none">
+<!-- 2. Real-time Telemetry Overlay -->
+<div class="surface-glass rounded-xl p-4 flex flex-col gap-4 pointer-events-auto shrink-0">
+<div class="flex items-center justify-between border-b border-white/5 pb-2">
+<h2 class="font-headline-md text-[18px] text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+                        Cluster Telemetry
+                    </h2>
+<span class="flex items-center gap-1 font-label-mono text-label-mono text-primary"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>LIVE</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-high/50 rounded-lg p-3 border border-outline-variant/30 relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-wider block mb-1">OEE Status</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-[24px] text-primary font-bold">94</span>
+<span class="font-label-mono text-[12px] text-primary/70">%</span>
+</div>
+<!-- Sparkline placeholder -->
+<div class="h-6 w-full mt-2 relative">
+<div class="absolute bottom-0 w-full h-[1px] bg-primary/20"></div>
+<svg class="w-full h-full preserve-aspect-ratio-none" viewbox="0 0 100 20">
+<path d="M0,15 L20,12 L40,18 L60,8 L80,10 L100,2" fill="none" stroke="rgba(107,216,203,0.8)" stroke-width="1.5" vector-effect="non-scaling-stroke"></path>
+<path d="M0,15 L20,12 L40,18 L60,8 L80,10 L100,2 L100,20 L0,20 Z" fill="url(#teal-grad)" stroke="none"></path>
+<defs>
+<lineargradient id="teal-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="rgba(107,216,203,0.3)"></stop>
+<stop offset="100%" stop-color="rgba(107,216,203,0)"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<div class="bg-surface-container-high/50 rounded-lg p-3 border border-outline-variant/30">
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-wider block mb-1">Active Sensors</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-[24px] text-on-surface font-bold">1,240</span>
+</div>
+</div>
+<div class="bg-surface-container-high/50 rounded-lg p-3 border border-outline-variant/30">
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-wider block mb-1">Energy Usage</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-[24px] text-tertiary font-bold">420</span>
+<span class="font-label-mono text-[12px] text-tertiary/70">kWh</span>
+</div>
+</div>
+<div class="bg-surface-container-high/50 rounded-lg p-3 border border-outline-variant/30">
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-wider block mb-1">Production</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-[24px] text-on-surface font-bold">12,450</span>
+<span class="font-label-mono text-[12px] text-on-surface-variant">units</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. AI Recommendation Insights -->
+<div class="surface-glass rounded-xl p-4 flex flex-col gap-3 pointer-events-auto shrink-0 relative overflow-hidden group border-glow border-tertiary-container/30">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary-container"></div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-tertiary-container text-[18px]">smart_toy</span>
+<span class="font-label-mono text-label-mono text-tertiary-container uppercase">AI Insight</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                     Optimizing conveyor speed by <span class="text-tertiary font-medium">-5%</span> could reduce thermal load on Extruder Beta by <span class="text-primary font-medium">12%</span>.
+                 </p>
+<div class="flex justify-end mt-2">
+<button class="font-label-mono text-[10px] uppercase tracking-wider text-primary hover:text-primary-fixed bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded transition-colors">Apply Optimization</button>
+</div>
+</div>
+<!-- 4. Simulation Control Center -->
+<div class="surface-glass rounded-xl p-4 flex flex-col gap-3 pointer-events-auto shrink-0">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant border-b border-white/5 pb-2 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">science</span>
+                     Simulation Scenarios
+                 </h3>
+<div class="grid grid-cols-1 gap-2 mt-2">
+<button class="bg-surface-container/50 border border-outline-variant/50 hover:bg-error/10 hover:border-error/50 hover:text-error text-on-surface text-left px-3 py-2 rounded-lg font-label-mono text-[11px] uppercase tracking-wide transition-all flex justify-between items-center group">
+                         Simulate Machine Failure
+                         <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">play_arrow</span>
+</button>
+<button class="bg-surface-container/50 border border-outline-variant/50 hover:bg-tertiary/10 hover:border-tertiary/50 hover:text-tertiary text-on-surface text-left px-3 py-2 rounded-lg font-label-mono text-[11px] uppercase tracking-wide transition-all flex justify-between items-center group">
+                         Simulate Power Failure
+                         <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">play_arrow</span>
+</button>
+<button class="bg-surface-container/50 border border-outline-variant/50 hover:bg-secondary/10 hover:border-secondary/50 hover:text-secondary text-on-surface text-left px-3 py-2 rounded-lg font-label-mono text-[11px] uppercase tracking-wide transition-all flex justify-between items-center group">
+                         Simulate Worker Shortage
+                         <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">play_arrow</span>
+</button>
+<button class="bg-surface-container/50 border border-outline-variant/50 hover:bg-on-tertiary-container/30 hover:border-on-tertiary-container/50 hover:text-on-tertiary-container text-on-surface text-left px-3 py-2 rounded-lg font-label-mono text-[11px] uppercase tracking-wide transition-all flex justify-between items-center group">
+                         Simulate Raw Material Delay
+                         <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 3. Machine Inventory Side Panel (Bottom Center/Left Floating) -->
+<div class="z-30 absolute bottom-gutter left-24 w-80 max-h-[409px] surface-glass rounded-xl flex flex-col pointer-events-auto shadow-2xl">
+<div class="p-3 border-b border-white/5 bg-surface-container-high/40 rounded-t-xl sticky top-0 flex justify-between items-center">
+<h3 class="font-label-mono text-[11px] uppercase tracking-widest text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">view_list</span>
+                    Asset Inventory
+                </h3>
+<span class="font-label-mono text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded-full">3 Nodes</span>
+</div>
+<div class="overflow-y-auto flex-1 p-2 flex flex-col gap-1">
+<!-- Healthy Asset -->
+<button class="w-full text-left p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors flex items-center justify-between group focus:bg-white/5 focus:border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary glow-text"></div>
+<span class="font-label-mono text-[12px] text-on-surface group-hover:text-primary transition-colors">CNC Unit Alpha</span>
+</div>
+<span class="font-label-mono text-[10px] text-primary">98%</span>
+</button>
+<!-- Warning Asset (Selected state for demonstration) -->
+<button class="w-full text-left p-3 rounded-lg bg-surface-variant/50 border border-tertiary/30 transition-colors flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute inset-0 bg-tertiary/5"></div>
+<div class="relative flex items-center justify-between w-full">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse shadow-[0_0_8px_#ffb59a]"></div>
+<span class="font-label-mono text-[12px] text-on-surface">Extruder Beta</span>
+</div>
+<span class="font-label-mono text-[10px] text-tertiary font-bold">85%</span>
+</div>
+<span class="relative font-body-sm text-[10px] text-tertiary/80 ml-5">Maintenance due in 4h</span>
+</button>
+<!-- Healthy Asset -->
+<button class="w-full text-left p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors flex items-center justify-between group focus:bg-white/5 focus:border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary glow-text"></div>
+<span class="font-label-mono text-[12px] text-on-surface group-hover:text-primary transition-colors">Assembler Gamma</span>
+</div>
+<span class="font-label-mono text-[10px] text-primary">100%</span>
+</button>
+</div>
+</div>
+<!-- 6. Machine Details Modal/Popup (Visualized as a detail card next to inventory) -->
+<!-- Popping out for Extruder Beta -->
+<div class="z-40 absolute bottom-gutter left-[440px] w-72 surface-glass rounded-xl border border-tertiary/30 p-4 flex flex-col gap-4 pointer-events-auto shadow-2xl relative overflow-hidden backdrop-blur-2xl bg-surface-container-highest/80">
+<!-- decorative header line -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-tertiary to-transparent"></div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-[16px] text-on-surface">Extruder Beta</h4>
+<span class="font-label-mono text-[10px] text-tertiary uppercase tracking-widest mt-1 block">Status: Warning</span>
+</div>
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-x-4 gap-y-3 mt-2">
+<div class="flex flex-col gap-1 border-l-2 border-outline-variant/30 pl-2">
+<span class="font-label-mono text-[9px] uppercase tracking-wider text-on-surface-variant">Temperature</span>
+<span class="font-label-mono text-[13px] text-tertiary">45°C</span>
+</div>
+<div class="flex flex-col gap-1 border-l-2 border-outline-variant/30 pl-2">
+<span class="font-label-mono text-[9px] uppercase tracking-wider text-on-surface-variant">Vibration</span>
+<span class="font-label-mono text-[13px] text-on-surface">0.4mm/s</span>
+</div>
+<div class="flex flex-col gap-1 border-l-2 border-outline-variant/30 pl-2">
+<span class="font-label-mono text-[9px] uppercase tracking-wider text-on-surface-variant">Power Draw</span>
+<span class="font-label-mono text-[13px] text-on-surface">12 kW</span>
+</div>
+<div class="flex flex-col gap-1 border-l-2 border-outline-variant/30 pl-2">
+<span class="font-label-mono text-[9px] uppercase tracking-wider text-on-surface-variant">Speed</span>
+<span class="font-label-mono text-[13px] text-on-surface">1800 RPM</span>
+</div>
+<div class="flex flex-col gap-1 border-l-2 border-outline-variant/30 pl-2 col-span-2">
+<span class="font-label-mono text-[9px] uppercase tracking-wider text-on-surface-variant">Total Runtime</span>
+<span class="font-label-mono text-[13px] text-primary">420h</span>
+</div>
+</div>
+<button class="mt-2 w-full font-label-mono text-[11px] uppercase tracking-widest text-surface bg-tertiary hover:bg-tertiary-fixed py-2 rounded transition-colors shadow-[0_0_15px_rgba(255,181,154,0.2)] hover:shadow-[0_0_20px_rgba(255,181,154,0.4)]">
+                Schedule Diagnostics
+            </button>
+</div>
+</main>
+</body></html>

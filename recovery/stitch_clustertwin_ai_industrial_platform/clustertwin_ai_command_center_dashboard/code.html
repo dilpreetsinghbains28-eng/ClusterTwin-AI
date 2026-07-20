@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClusterTwin AI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#3d4947",
+                        "inverse-primary": "#006a61",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-fixed": "#00201d",
+                        "primary": "#6bd8cb",
+                        "surface-variant": "#2d3449",
+                        "on-secondary-container": "#e6ecff",
+                        "surface-container-highest": "#2d3449",
+                        "on-secondary-fixed": "#001a42",
+                        "tertiary-container": "#d27956",
+                        "surface-dim": "#0b1326",
+                        "secondary": "#adc6ff",
+                        "on-background": "#dae2fd",
+                        "on-surface": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00302b",
+                        "primary-container": "#29a195",
+                        "on-tertiary-container": "#4f1700",
+                        "on-primary-fixed-variant": "#005049",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#002e6a",
+                        "surface-container": "#171f33",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "outline": "#879391",
+                        "on-tertiary-fixed-variant": "#773215",
+                        "surface-bright": "#31394d",
+                        "on-tertiary-fixed": "#370e00",
+                        "surface": "#0b1326",
+                        "surface-tint": "#6bd8cb",
+                        "primary-fixed": "#89f5e7",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-primary": "#003732",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#283044",
+                        "secondary-container": "#0566d9",
+                        "error-container": "#93000a",
+                        "background": "#0b1326",
+                        "tertiary": "#ffb59a",
+                        "on-tertiary": "#591c02",
+                        "on-surface-variant": "#bcc9c6",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-container-high": "#222a3d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "container-padding-desktop": "32px",
+                        "gutter": "24px",
+                        "container-padding-mobile": "16px",
+                        "unit": "4px",
+                        "section-gap": "64px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["JetBrains Mono"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "body-base": ["Inter"],
+                        "display-lg-mobile": ["Geist"]
+                    },
+                    fontSize: {
+                        "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+                        "body-base": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }],
+                        "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .surface-glass {
+            background: rgba(23, 31, 51, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .border-glow {
+            border: 1px solid rgba(107, 216, 203, 0.3);
+            box-shadow: inset 0 0 10px rgba(107, 216, 203, 0.1);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #29a195 0%, #005049 100%);
+        }
+        
+        /* Subtle Grid Background */
+        body {
+            background-color: #0b1326;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #dae2fd;
+        }
+
+        /* Custom Scrollbar for inner elements */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(107, 216, 203, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 216, 203, 0.4);
+        }
+    </style>
+</head>
+<body class="font-body-base h-screen overflow-hidden flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- Ambient Glow behind content -->
+<div class="fixed top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest/90 backdrop-blur-2xl text-primary font-label-mono h-screen w-64 fixed left-0 top-0 border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.5)] flex flex-col h-full p-4 gap-2 z-50 md:flex hidden">
+<!-- Header -->
+<div class="mb-8 px-4 py-2">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<span class="font-display-lg text-display-lg text-primary tracking-tighter text-xl">ClusterTwin AI</span>
+</div>
+<p class="text-on-surface-variant text-xs mt-1">Industrial OS v2.4</p>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto pr-2">
+<!-- Active Nav Item -->
+<a class="bg-primary-container text-on-primary-container rounded-lg font-bold shadow-[0_0_15px_rgba(107,216,203,0.3)] flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span>Clusters</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">factory</span>
+<span>Assets</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+<span>Production</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Logistics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span>Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-2 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<!-- Footer Actions -->
+<div class="mt-auto pt-4 border-t border-white/5">
+<button class="w-full primary-gradient text-white rounded-lg px-4 py-3 mb-4 font-bold flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(107,216,203,0.5)] transition-all">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+                AI Assistant
+            </button>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 mb-1 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 rounded-lg flex items-center gap-3 px-4 py-3 scale-95 active:scale-90 cursor-pointer" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 relative z-10 w-full h-full">
+<!-- TopNavBar -->
+<header class="bg-surface/80 backdrop-blur-xl w-full top-0 sticky shadow-sm border-b border-white/10 z-40 hidden md:block">
+<div class="flex justify-between items-center px-container-padding-desktop py-4 w-full h-16">
+<!-- Mobile Logo (Hidden on desktop due to sidebar) -->
+<div class="md:hidden font-headline-md text-headline-md font-bold text-primary">ClusterTwin AI</div>
+<!-- Search (on left) -->
+<div class="flex-1 max-w-md relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-[#1E293B] border-none rounded-full pl-10 pr-4 py-1.5 text-sm font-label-mono text-on-surface placeholder-on-surface-variant focus:ring-1 focus:ring-primary focus:outline-none border-glow" placeholder="Search clusters, assets, or metrics..." type="text"/>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-white/5 transition-colors rounded-full cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-white/5 transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-white/5 transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="ml-4 pl-4 border-l border-white/10">
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-primary/50 object-cover cursor-pointer hover:border-primary transition-colors" data-alt="A small, professional headshot portrait of a network administrator or industrial plant manager in a well-lit control room setting. High quality, corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcdAjYgwzGyur3IoMyp2VdAttbvmE-ZigDA6J-Ekr6iqKf42n8S7lPdFOdIY7kiJpnS1JbhhfjMGOE6lDtwMEOXMMRXBHp3xqIR3suRElz6kY1uMkwku4zllbRv9qAb7hDaqlJTj6h0UhTh0OENT8Bf6sRVYZHeLrPbOJ7EpuWOM55Ltdeyxh9ttOs5JLytPf-sXjNCwrwUGX40MF4wGu9CyfpNKWWLAGVVQgoWcQS-m5XwZ1AIQJlK6Ps0RsuXjkJ6-vOvtHRFzk"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter pb-24">
+<div class="flex flex-col xl:flex-row gap-gutter h-full">
+<!-- Left/Center Column (KPIs & Charts) -->
+<div class="flex-1 flex flex-col gap-gutter min-w-0">
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<!-- KPI 1 -->
+<div class="surface-glass p-4 rounded-xl flex flex-col justify-between group hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-mono text-on-surface-variant">Total Factories</span>
+<span class="material-symbols-outlined text-primary/70 text-sm">domain</span>
+</div>
+<div class="font-display-lg text-3xl font-bold text-on-surface group-hover:text-primary transition-colors">42</div>
+</div>
+<!-- KPI 2 -->
+<div class="surface-glass p-4 rounded-xl flex flex-col justify-between group hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-mono text-on-surface-variant">Machines Online</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="material-symbols-outlined text-primary/70 text-sm">precision_manufacturing</span>
+</div>
+</div>
+<div class="font-display-lg text-3xl font-bold text-on-surface group-hover:text-primary transition-colors">1,280</div>
+</div>
+<!-- KPI 3 -->
+<div class="surface-glass p-4 rounded-xl flex flex-col justify-between group hover:border-error/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-mono text-on-surface-variant">Machines Offline</span>
+<span class="material-symbols-outlined text-error/70 text-sm">warning</span>
+</div>
+<div class="font-display-lg text-3xl font-bold text-error">12</div>
+</div>
+<!-- KPI 4 -->
+<div class="surface-glass p-4 rounded-xl flex flex-col justify-between group hover:border-primary/50 transition-colors relative overflow-hidden">
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJKZl4LX1w3HF9KuCGwbBBwbRDy4r__VODcwCO1FsYShw1UCFAPK4g4nniwobSFLxUFDE12Nk8G40DNt9U2NOKU93ZxVe200ySBGU8iuJCz0JwYGDfiBlW1bHJsgKQ-qy4kZI4vnidNsUcEOABSJoodsO81o8czTSJ65PKhvYkxLQ3VCguaV8E2aQ5yQh8yqWdtMYRi89ZQVFLhlhjzh2ajOpUMP8XSwqHu1JGDWEyQ9X51Ok3CTf6fycQPZw_oNWlSwCMb6rKoQY'); background-size: cover; background-position: center; mix-blend-mode: luminosity;"></div>
+<div class="relative z-10 flex justify-between items-start mb-2">
+<span class="font-label-mono text-on-surface-variant">Today's Production</span>
+<span class="material-symbols-outlined text-primary/70 text-sm">inventory_2</span>
+</div>
+<div class="relative z-10 font-display-lg text-3xl font-bold text-on-surface group-hover:text-primary transition-colors">8.4M</div>
+</div>
+</div>
+<!-- Main Charts Area -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter flex-1 min-h-[300px]">
+<!-- Production Trend -->
+<div class="surface-glass rounded-xl p-4 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-lg text-on-surface">Production Trend</h3>
+<button class="text-primary hover:bg-primary/10 p-1 rounded transition-colors"><span class="material-symbols-outlined text-sm">more_horiz</span></button>
+</div>
+<div class="flex-1 relative flex items-end w-full pb-4 px-2">
+<!-- Simulated Chart Graphic -->
+<div class="absolute bottom-4 left-2 right-2 h-32 flex items-end gap-1">
+<div class="w-full h-[40%] bg-primary/20 rounded-t border-t border-primary/50"></div>
+<div class="w-full h-[60%] bg-primary/20 rounded-t border-t border-primary/50"></div>
+<div class="w-full h-[35%] bg-primary/20 rounded-t border-t border-primary/50"></div>
+<div class="w-full h-[80%] bg-primary/30 rounded-t border-t border-primary shadow-[0_0_15px_rgba(107,216,203,0.5)]"></div>
+<div class="w-full h-[50%] bg-primary/20 rounded-t border-t border-primary/50"></div>
+</div>
+<!-- Overlay Line -->
+<svg class="absolute bottom-4 left-2 right-2 h-32 w-[calc(100%-16px)]" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="drop-shadow-[0_0_8px_rgba(107,216,203,0.8)]" d="M0,60 C20,60 20,40 40,40 C60,40 60,65 80,65 C90,65 90,20 100,20" fill="none" stroke="#6bd8cb" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<!-- Machine Utilization -->
+<div class="surface-glass rounded-xl p-4 flex flex-col relative overflow-hidden">
+<!-- Decorative Background image -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJKZl4LX1w3HF9KuCGwbBBwbRDy4r__VODcwCO1FsYShw1UCFAPK4g4nniwobSFLxUFDE12Nk8G40DNt9U2NOKU93ZxVe200ySBGU8iuJCz0JwYGDfiBlW1bHJsgKQ-qy4kZI4vnidNsUcEOABSJoodsO81o8czTSJ65PKhvYkxLQ3VCguaV8E2aQ5yQh8yqWdtMYRi89ZQVFLhlhjzh2ajOpUMP8XSwqHu1JGDWEyQ9X51Ok3CTf6fycQPZw_oNWlSwCMb6rKoQY'); background-size: cover; background-position: right;"></div>
+<div class="relative z-10 flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-lg text-on-surface">Machine Utilization</h3>
+<span class="font-label-mono text-primary bg-primary/10 px-2 py-0.5 rounded text-xs">+4.2%</span>
+</div>
+<div class="flex-1 relative flex items-center justify-center z-10">
+<!-- Simulated Donut/Radial -->
+<div class="w-40 h-40 rounded-full border-[12px] border-surface-container-high relative flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="drop-shadow-[0_0_10px_rgba(107,216,203,0.6)]" cx="50%" cy="50%" fill="none" r="42%" stroke="#6bd8cb" stroke-dasharray="264" stroke-dashoffset="30" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="text-center">
+<div class="font-display-lg text-2xl text-on-surface">94%</div>
+<div class="font-label-mono text-[10px] text-on-surface-variant">Avg Health</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel (Context & AI) -->
+<aside class="w-full xl:w-80 flex flex-col gap-gutter shrink-0">
+<!-- AI Recommendation -->
+<div class="surface-glass rounded-xl p-4 border border-primary/30 relative overflow-hidden shadow-[0_0_30px_rgba(107,216,203,0.1)]">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent"></div>
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined text-lg">psychology</span>
+<h3 class="font-headline-md text-sm uppercase tracking-wider">AI Insight</h3>
+</div>
+<p class="text-sm text-on-surface-variant mb-4 leading-relaxed">
+                            Predictive model suggests a 87% probability of bearing failure in <span class="text-on-surface font-semibold">CNC Unit 4 (Cluster B)</span> within 48 hours based on vibration anomalies.
+                        </p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary/20 hover:bg-primary/30 text-primary text-xs font-label-mono py-2 rounded transition-colors border border-primary/30">Schedule Maint.</button>
+<button class="flex-1 bg-transparent hover:bg-white/5 text-on-surface-variant text-xs font-label-mono py-2 rounded transition-colors border border-white/10">View Data</button>
+</div>
+</div>
+<!-- Alerts List -->
+<div class="surface-glass rounded-xl p-4 flex-1 flex flex-col min-h-[250px]">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-base text-on-surface">Recent Alerts</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">filter_list</span>
+</div>
+<div class="flex flex-col gap-3 overflow-y-auto pr-1">
+<!-- Alert Item Critical -->
+<div class="bg-error/10 border-l-2 border-error p-3 rounded-r-lg flex gap-3 items-start">
+<span class="material-symbols-outlined text-error text-sm mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span>
+<div>
+<div class="font-label-mono text-error text-xs mb-1">Thermal Runaway Risk</div>
+<div class="text-xs text-on-surface-variant">Extruder 2 running 15°C above spec.</div>
+<div class="text-[10px] text-on-surface-variant/50 mt-1">2 mins ago</div>
+</div>
+</div>
+<!-- Alert Item Warning -->
+<div class="bg-tertiary-container/10 border-l-2 border-tertiary p-3 rounded-r-lg flex gap-3 items-start">
+<span class="material-symbols-outlined text-tertiary text-sm mt-0.5">warning</span>
+<div>
+<div class="font-label-mono text-tertiary text-xs mb-1">Supply Chain Delay</div>
+<div class="text-xs text-on-surface-variant">Raw material shipment delayed by 4h.</div>
+<div class="text-[10px] text-on-surface-variant/50 mt-1">45 mins ago</div>
+</div>
+</div>
+<!-- Alert Item Info -->
+<div class="bg-primary/5 border-l-2 border-primary/50 p-3 rounded-r-lg flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary/70 text-sm mt-0.5">info</span>
+<div>
+<div class="font-label-mono text-primary/80 text-xs mb-1">Firmware Update</div>
+<div class="text-xs text-on-surface-variant">Cluster C sensors updated to v2.1.</div>
+<div class="text-[10px] text-on-surface-variant/50 mt-1">2 hours ago</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<!-- Floating AI Assistant FAB -->
+<button class="fixed bottom-6 right-6 w-14 h-14 primary-gradient rounded-full shadow-[0_0_20px_rgba(107,216,203,0.4)] flex items-center justify-center text-on-primary-container hover:scale-105 active:scale-95 transition-transform z-50 group border border-primary/50">
+<span class="material-symbols-outlined text-2xl group-hover:animate-pulse">smart_toy</span>
+</button>
+</body></html>

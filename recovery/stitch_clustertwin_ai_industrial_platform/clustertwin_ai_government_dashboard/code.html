@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Government Oversight Dashboard - Aura Industrial AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#0b1326",
+                      "on-surface-variant": "#bcc9c6",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-tertiary-fixed": "#370e00",
+                      "surface-container-high": "#222a3d",
+                      "tertiary-container": "#d27956",
+                      "surface-tint": "#6bd8cb",
+                      "on-primary-fixed": "#00201d",
+                      "on-surface": "#dae2fd",
+                      "on-secondary-fixed": "#001a42",
+                      "inverse-on-surface": "#283044",
+                      "on-primary-fixed-variant": "#005049",
+                      "surface-container-highest": "#2d3449",
+                      "inverse-primary": "#006a61",
+                      "background": "#0b1326",
+                      "on-secondary": "#002e6a",
+                      "on-error-container": "#ffdad6",
+                      "tertiary": "#ffb59a",
+                      "on-secondary-container": "#e6ecff",
+                      "tertiary-fixed-dim": "#ffb59a",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "primary-container": "#29a195",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-primary-container": "#00302b",
+                      "primary-fixed": "#89f5e7",
+                      "outline": "#879391",
+                      "on-tertiary-fixed-variant": "#773215",
+                      "on-background": "#dae2fd",
+                      "on-primary": "#003732",
+                      "secondary-container": "#0566d9",
+                      "surface-container": "#171f33",
+                      "surface": "#0b1326",
+                      "surface-variant": "#2d3449",
+                      "error-container": "#93000a",
+                      "inverse-surface": "#dae2fd",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "on-tertiary-container": "#4f1700",
+                      "surface-bright": "#31394d",
+                      "tertiary-fixed": "#ffdbce",
+                      "primary": "#6bd8cb",
+                      "surface-container-lowest": "#060e20",
+                      "on-tertiary": "#591c02",
+                      "outline-variant": "#3d4947",
+                      "secondary": "#adc6ff",
+                      "primary-fixed-dim": "#6bd8cb",
+                      "surface-container-low": "#131b2e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "section-gap": "64px",
+                      "gutter": "24px",
+                      "container-padding-mobile": "16px",
+                      "unit": "4px",
+                      "container-padding-desktop": "32px"
+              },
+              "fontFamily": {
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "display-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-base": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-base": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        
+        .surface-glass {
+            background-color: rgba(34, 42, 61, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 20px rgba(107, 216, 203, 0.02), 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .border-glow {
+            border: 1px solid rgba(107, 216, 203, 0.3);
+            box-shadow: 0 0 10px rgba(107, 216, 203, 0.1);
+        }
+        
+        .primary-gradient {
+            background: linear-gradient(135deg, #29a195 0%, #005049 100%);
+        }
+
+        .primary-glow-hover:hover {
+            box-shadow: 0 0 12px rgba(107, 216, 203, 0.4);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, #6bd8cb, #adc6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Sparkline animation */
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        .sparkline-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2s ease-out forwards;
+        }
+        
+        /* Pulse dot */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(107, 216, 203, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(107, 216, 203, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(107, 216, 203, 0); }
+        }
+        .status-dot {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen font-body-base text-body-base flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Mobile Only) / Desktop Header -->
+<nav class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_0_20px_rgba(107,216,203,0.1)] border-b border-white/10 flex justify-between items-center px-gutter h-16 w-full md:hidden">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary tracking-tighter text-2xl">Aura Industrial AI</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-2 rounded-full hover:bg-white/5 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex flex-col py-6 px-4 space-y-2 bg-surface-container-low/50 backdrop-blur-2xl fixed left-0 top-0 h-screen w-64 border-r border-white/5 z-40">
+<div class="mb-8 px-4">
+<h1 class="font-display-lg text-display-lg text-primary text-3xl font-bold tracking-tighter mb-2">Aura</h1>
+<div class="flex items-center gap-3 mt-6">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-white/10">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A macro close-up of a glowing digital avatar representing an artificial intelligence monitor. The avatar is composed of intricate, luminous cyan geometric patterns set against a deep space background, reflecting high-tech corporate identity in a dark-mode industrial UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnPFmKk7lGxZ2IvOWdP0dEOI2fe1xVZwlImi2IKH62lywx38wNR30OD2UMCC2_9mJKtyDauoKll9nG_uTP1wZYPO_s3Yd0GoAvEJU_fdgf3MiD0LjeIli_ZMjz1ULW0BUBIwinP_GDoNTrMTk0LefjVafLZ0IR_-uBCP9Guf-cVW1jh71KAG5HqbzlrcvptnhAgblIdSlM0t-YlBhYXl-6HjX19BSFmBBFUqG89LzdxsmbQxUVYYTh13OOgc70mgzjS73lWQO4ZHA"/>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-on-surface">Industrial Hub</div>
+<div class="font-label-mono text-[10px] text-on-surface-variant">District v4.2</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+<span>Production</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">build</span>
+<span>Maintenance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span>Energy</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>Employment</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:translate-x-1 transition-transform active:opacity-80 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">map</span>
+<span>Districts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container/20 text-primary border-r-2 border-primary hover:translate-x-1 transition-transform active:opacity-80 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Gov Dashboard</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-white/5 pt-4">
+<button class="w-full flex items-center justify-center gap-2 primary-gradient text-white py-3 rounded-lg font-label-mono text-label-mono font-bold primary-glow-hover transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">download</span>
+                Export Audit
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 mt-4 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 pt-20 md:pt-8 p-container-padding-mobile md:p-container-padding-desktop pb-32">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-primary status-dot"></span>
+<span class="font-label-mono text-label-mono text-primary tracking-widest uppercase">Live Telemetry</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2 text-3xl">Gov Dashboard</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xl">Macro-industrial analytics view for regional administrators. Monitoring district output, employment trends, and operational efficiency across the cluster.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-primary/30 text-primary hover:bg-primary/10 transition-all font-label-mono text-label-mono flex items-center gap-2 border-glow">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+                    Policy Insights
+                </button>
+<button class="px-6 py-2.5 rounded-lg primary-gradient text-white font-label-mono text-label-mono font-bold primary-glow-hover transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export All Data
+                </button>
+</div>
+</header>
+<!-- KPI Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<!-- KPI 1 -->
+<div class="surface-glass rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase">Regional Prod. Index</div>
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-display-lg text-display-lg text-on-surface text-4xl">142.8</span>
+<span class="font-body-sm text-body-sm text-primary flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span>3.2%</span>
+</div>
+<div class="h-8 w-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 20">
+<path class="sparkline-path" d="M0,15 Q10,5 20,10 T40,15 T60,5 T80,10 T100,2" fill="none" stroke="#6bd8cb" stroke-width="2"></path>
+<path d="M0,15 Q10,5 20,10 T40,15 T60,5 T80,10 T100,2 L100,20 L0,20 Z" fill="url(#grad1)" opacity="0.2"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#6bd8cb;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#6bd8cb;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="surface-glass rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase">Total Employment</div>
+<span class="material-symbols-outlined text-secondary">groups</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-display-lg text-display-lg text-on-surface text-4xl">84.5k</span>
+<span class="font-body-sm text-body-sm text-primary flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span>1.1%</span>
+</div>
+<div class="h-8 w-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 20">
+<path class="sparkline-path" d="M0,10 L20,12 L40,8 L60,14 L80,6 L100,2" fill="none" stroke="#adc6ff" stroke-width="2"></path>
+<path d="M0,10 L20,12 L40,8 L60,14 L80,6 L100,2 L100,20 L0,20 Z" fill="url(#grad2)" opacity="0.2"></path>
+<defs>
+<lineargradient id="grad2" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#adc6ff;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#adc6ff;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="surface-glass rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-tertiary-container/10 rounded-full blur-2xl group-hover:bg-tertiary-container/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase">Agg. Energy Intensity</div>
+<span class="material-symbols-outlined text-tertiary-container">bolt</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-display-lg text-display-lg text-on-surface text-4xl">4.2<span class="text-sm text-on-surface-variant ml-1">GJ/t</span></span>
+<span class="font-body-sm text-body-sm text-error flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span>0.5%</span>
+</div>
+<div class="h-8 w-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 20">
+<path class="sparkline-path" d="M0,8 Q20,15 40,10 T80,12 T100,18" fill="none" stroke="#d27956" stroke-width="2"></path>
+<path d="M0,8 Q20,15 40,10 T80,12 T100,18 L100,20 L0,20 Z" fill="url(#grad3)" opacity="0.2"></path>
+<defs>
+<lineargradient id="grad3" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#d27956;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#d27956;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="surface-glass rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase">Carbon Emissions</div>
+<span class="material-symbols-outlined text-primary">co2</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-display-lg text-display-lg text-on-surface text-4xl">1.2<span class="text-sm text-on-surface-variant ml-1">Mt</span></span>
+<span class="font-body-sm text-body-sm text-primary flex items-center"><span class="material-symbols-outlined text-xs">arrow_downward</span>2.4%</span>
+</div>
+<div class="h-8 w-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 20">
+<path class="sparkline-path" d="M0,2 Q20,8 40,5 T80,12 T100,18" fill="none" stroke="#6bd8cb" stroke-width="2"></path>
+<path d="M0,2 Q20,8 40,5 T80,12 T100,18 L100,20 L0,20 Z" fill="url(#grad4)" opacity="0.2"></path>
+<defs>
+<lineargradient id="grad4" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#6bd8cb;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#6bd8cb;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+</section>
+<!-- Main Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+<!-- District Comparison Map (Spans 2 columns on desktop) -->
+<div class="lg:col-span-2 surface-glass rounded-xl p-0 relative overflow-hidden flex flex-col min-h-[400px]">
+<div class="p-6 border-b border-white/5 flex justify-between items-center bg-surface-container-low/30 absolute top-0 w-full z-10 backdrop-blur-md">
+<h3 class="font-headline-md text-headline-md text-on-surface text-xl">District Output Heatmap</h3>
+<div class="flex gap-2">
+<button class="p-1.5 rounded bg-surface-variant text-on-surface hover:bg-surface-bright transition-colors"><span class="material-symbols-outlined text-sm">zoom_in</span></button>
+<button class="p-1.5 rounded bg-surface-variant text-on-surface hover:bg-surface-bright transition-colors"><span class="material-symbols-outlined text-sm">zoom_out</span></button>
+</div>
+</div>
+<!-- Map Container -->
+<div class="flex-1 w-full h-full relative mt-16 bg-surface-dim">
+<img alt="District Map Visualization" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="A highly detailed, stylized 3D topological map of a sprawling futuristic industrial district. The map uses a dark mode color palette with deep obsidian bases. Glowing neon cyan and vibrant blue heat map overlays highlight areas of high industrial output and data density. Floating interface elements and data nodes are visible." data-location="Industrial Sector 7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1IZSvouX_7Ruxmxo_JV9RHTmwljiqiXC2eJJpG8TEsUkyngpNJx7p3MfF2-PJAyT26pZLWgRSQpRa8qGjR6OkHs1I7mJm3fVNT5vtuY0sTYJQW0JklGNe34wwlTYRHxFoFn2FCAx_erckL3JKKFXBsvTbqVZKCpoGrPUTPSJcgQypWGnlTyDx7EnRPnPpTWAvkQHqWwDJOQ7r7AXkB2algvc2PxZkxKQ8J-iNgr4YBB748uEul2lf5B5DDZjAcUBXWlQcN96tJEI"/>
+<!-- Interactive Map Nodes -->
+<div class="absolute top-[30%] left-[40%] group">
+<div class="w-4 h-4 rounded-full bg-primary relative cursor-pointer">
+<div class="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></div>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 surface-glass p-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border-glow z-20">
+<div class="font-label-mono text-xs text-primary mb-1">District Alpha</div>
+<div class="text-sm text-on-surface">Output: 45k Units</div>
+<div class="text-xs text-on-surface-variant">Efficiency: 92%</div>
+</div>
+</div>
+<div class="absolute top-[60%] left-[20%] group">
+<div class="w-3 h-3 rounded-full bg-secondary relative cursor-pointer">
+<div class="absolute inset-0 rounded-full bg-secondary animate-ping opacity-50"></div>
+</div>
+</div>
+<div class="absolute top-[45%] left-[70%] group">
+<div class="w-5 h-5 rounded-full bg-primary relative cursor-pointer shadow-[0_0_15px_#6bd8cb]">
+<div class="absolute inset-0 rounded-full bg-primary animate-ping opacity-100"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Industry Analysis Bar Chart -->
+<div class="surface-glass rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface text-xl">Sector Performance</h3>
+<span class="material-symbols-outlined text-on-surface-variant">bar_chart</span>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-6">
+<!-- Automotive -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono mb-2">
+<span class="text-on-surface">Automotive</span>
+<span class="text-primary">88%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full relative" style="width: 88%">
+<div class="absolute inset-0 bg-white/20 w-1/2 rounded-full blur-sm"></div>
+</div>
+</div>
+</div>
+<!-- Electronics -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono mb-2">
+<span class="text-on-surface">Electronics</span>
+<span class="text-secondary">76%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full" style="width: 76%"></div>
+</div>
+</div>
+<!-- Textiles -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono mb-2">
+<span class="text-on-surface">Textiles</span>
+<span class="text-tertiary-container">45%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-tertiary-container h-2 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Heavy Machinery -->
+<div>
+<div class="flex justify-between font-label-mono text-label-mono mb-2">
+<span class="text-on-surface">Heavy Machinery</span>
+<span class="text-primary">62%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary/60 h-2 rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lower Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Factory Ranking Table -->
+<div class="surface-glass rounded-xl p-6 overflow-hidden flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface text-xl">Top Facilities</h3>
+<button class="font-label-mono text-label-mono text-primary hover:text-white transition-colors">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10 font-label-mono text-label-mono text-on-surface-variant">
+<th class="py-3 px-4 font-medium">Rank</th>
+<th class="py-3 px-4 font-medium">Facility ID</th>
+<th class="py-3 px-4 font-medium">District</th>
+<th class="py-3 px-4 font-medium text-right">Efficiency</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+<td class="py-3 px-4 text-primary font-label-mono">01</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    GigaFab Alpha
+                                </td>
+<td class="py-3 px-4 text-on-surface-variant">D-North</td>
+<td class="py-3 px-4 text-right text-on-surface font-label-mono">98.2%</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+<td class="py-3 px-4 text-secondary font-label-mono">02</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    ElectroWorks 4
+                                </td>
+<td class="py-3 px-4 text-on-surface-variant">D-East</td>
+<td class="py-3 px-4 text-right text-on-surface font-label-mono">95.4%</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+<td class="py-3 px-4 text-on-surface-variant font-label-mono">03</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant"></span>
+                                    AutoAssembly B
+                                </td>
+<td class="py-3 px-4 text-on-surface-variant">D-South</td>
+<td class="py-3 px-4 text-right text-on-surface font-label-mono">91.1%</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="py-3 px-4 text-on-surface-variant font-label-mono">04</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant"></span>
+                                    TextileHub
+                                </td>
+<td class="py-3 px-4 text-on-surface-variant">D-West</td>
+<td class="py-3 px-4 text-right text-on-surface font-label-mono">88.7%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Employment Trends Line Graph -->
+<div class="surface-glass rounded-xl p-6 relative overflow-hidden flex flex-col min-h-[300px]">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-xl mb-1">Workforce Dynamics</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Quarterly Growth vs Demand</p>
+</div>
+<div class="flex gap-3 font-label-mono text-xs">
+<div class="flex items-center gap-1 text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-primary"></span> Active</div>
+<div class="flex items-center gap-1 text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary"></span> Demand</div>
+</div>
+</div>
+<div class="flex-1 relative mt-4 w-full h-full min-h-[200px] z-10 flex items-end">
+<!-- Abstract graph representation using SVG -->
+<svg class="w-full h-full absolute inset-0" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Grid lines -->
+<line stroke="rgba(255,255,255,0.05)" stroke-width="0.5" x1="0" x2="100" y1="25" y2="25"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-width="0.5" x1="0" x2="100" y1="50" y2="50"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-width="0.5" x1="0" x2="100" y1="75" y2="75"></line>
+<!-- Demand Line (Secondary) -->
+<path class="sparkline-path" d="M0,80 Q20,70 40,75 T60,50 T80,30 T100,20" fill="none" stroke="#adc6ff" stroke-dasharray="2,2" stroke-width="1.5"></path>
+<!-- Active Workforce Line (Primary) -->
+<path class="sparkline-path" d="M0,90 Q20,85 40,80 T60,60 T80,45 T100,40" fill="none" stroke="#6bd8cb" stroke-width="2.5"></path>
+<!-- Area Fill -->
+<path d="M0,90 Q20,85 40,80 T60,60 T80,45 T100,40 L100,100 L0,100 Z" fill="url(#gradGraph)" opacity="0.15"></path>
+<defs>
+<lineargradient id="gradGraph" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#6bd8cb;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#6bd8cb;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<!-- Data Points -->
+<circle cx="60" cy="60" fill="#0b1326" r="2" stroke="#6bd8cb" stroke-width="1.5"></circle>
+<circle cx="80" cy="45" fill="#0b1326" r="2" stroke="#6bd8cb" stroke-width="1.5"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between font-label-mono text-[10px] text-on-surface-variant pt-2 border-t border-white/10">
+<span>Q1</span>
+<span>Q2</span>
+<span>Q3</span>
+<span>Q4</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

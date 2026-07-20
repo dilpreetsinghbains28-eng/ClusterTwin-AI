@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - ClusterTwin AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0b1326",
+                        "on-secondary-container": "#e6ecff",
+                        "on-secondary": "#002e6a",
+                        "inverse-primary": "#006a61",
+                        "surface-container-low": "#131b2e",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#4f1700",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary": "#591c02",
+                        "on-surface-variant": "#bcc9c6",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-variant": "#2d3449",
+                        "inverse-on-surface": "#283044",
+                        "surface-dim": "#0b1326",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#370e00",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-container": "#171f33",
+                        "inverse-surface": "#dae2fd",
+                        "primary-fixed": "#89f5e7",
+                        "on-primary-container": "#00302b",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface": "#0b1326",
+                        "surface-tint": "#6bd8cb",
+                        "secondary": "#adc6ff",
+                        "on-primary-fixed-variant": "#005049",
+                        "surface-bright": "#31394d",
+                        "error-container": "#93000a",
+                        "primary-container": "#29a195",
+                        "secondary-container": "#0566d9",
+                        "on-background": "#dae2fd",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#773215",
+                        "surface-container-highest": "#2d3449",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary": "#ffb59a",
+                        "on-primary": "#003732",
+                        "outline-variant": "#3d4947",
+                        "outline": "#879391",
+                        "tertiary-container": "#d27956",
+                        "on-surface": "#dae2fd",
+                        "on-primary-fixed": "#00201d",
+                        "primary": "#6bd8cb",
+                        "surface-container-high": "#222a3d",
+                        "on-secondary-fixed": "#001a42"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "32px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "section-gap": "64px",
+                        "container-padding-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "body-base": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .surface-glass {
+            background: rgba(19, 27, 46, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .border-glow {
+            border: 1px solid rgba(107, 216, 203, 0.3);
+            box-shadow: inset 0 0 10px rgba(107, 216, 203, 0.1);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #29a195 0%, #006a61 100%);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #29a195 0%, #006a61 100%);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(107, 216, 203, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(107, 216, 203, 0.3);
+            color: #dae2fd;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(107, 216, 203, 0.1);
+            border-color: rgba(107, 216, 203, 0.6);
+        }
+        .input-field {
+            background-color: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #dae2fd;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: rgba(107, 216, 203, 0.6);
+            box-shadow: inset 0 0 10px rgba(107, 216, 203, 0.1), 0 0 10px rgba(107, 216, 203, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-base overflow-x-hidden relative">
+<!-- Top Navigation (Suppressed per guidelines for Login page, but keeping Brand Logo) -->
+<header class="w-full top-0 sticky z-50 p-container-padding-desktop absolute">
+<div class="flex justify-start items-center">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">ClusterTwin AI</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex items-center justify-center relative z-10 w-full min-h-screen">
+<!-- 3D Animation Background Layer -->
+<!-- STITCH_THREEJS_START:ANIMATION_9 class="absolute inset-0 w-full h-full -z-10 opacity-60" -->
+<div class="absolute inset-0 w-full h-full -z-10 opacity-60" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_9" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_9');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  
+(function() {
+  const container = document.getElementById('threejs-container-AUTH_BG');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  
+  const scene = new THREE.Scene();
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  scene.add(ambientLight);
+  const directionalLight = new THREE.DirectionalLight(0x0D9488, 1);
+  directionalLight.position.set(10, 10, 10);
+  scene.add(directionalLight);
+
+  // Industrial Grid / Network
+  const particles = new THREE.Group();
+  scene.add(particles);
+
+  const geometry = new THREE.SphereGeometry(0.05, 8, 8);
+  const material = new THREE.MeshPhongMaterial({ color: 0x0D9488, emissive: 0x0D9488, emissiveIntensity: 0.5 });
+
+  const count = 40;
+  const nodes = [];
+  for (let i = 0; i < count; i++) {
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 10 - 5
+    );
+    mesh.userData = {
+      velocity: new THREE.Vector3(
+        (Math.random() - 0.5) * 0.01,
+        (Math.random() - 0.5) * 0.01,
+        (Math.random() - 0.5) * 0.01
+      )
+    };
+    particles.add(mesh);
+    nodes.push(mesh);
+  }
+
+  // Connect nodes with lines if they are close
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x0D9488, transparent: true, opacity: 0.1 });
+  const lineGeometry = new THREE.BufferGeometry();
+  const linePositions = new Float32Array(count * count * 6);
+  lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+  const lineMesh = new THREE.LineSegments(lineGeometry, lineMat);
+  scene.add(lineMesh);
+
+  camera.position.z = 15;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    let lineIdx = 0;
+    const positions = lineMesh.geometry.attributes.position.array;
+
+    nodes.forEach((node, i) => {
+      node.position.add(node.userData.velocity);
+      
+      // Boundary check
+      if (Math.abs(node.position.x) > 10) node.userData.velocity.x *= -1;
+      if (Math.abs(node.position.y) > 10) node.userData.velocity.y *= -1;
+      if (Math.abs(node.position.z + 5) > 5) node.userData.velocity.z *= -1;
+
+      // Draw lines
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dist = node.position.distanceTo(nodes[j].position);
+        if (dist < 4) {
+          positions[lineIdx++] = node.position.x;
+          positions[lineIdx++] = node.position.y;
+          positions[lineIdx++] = node.position.z;
+          positions[lineIdx++] = nodes[j].position.x;
+          positions[lineIdx++] = nodes[j].position.y;
+          positions[lineIdx++] = nodes[j].position.z;
+        }
+      }
+    });
+
+    lineMesh.geometry.attributes.position.needsUpdate = true;
+    lineMesh.geometry.setDrawRange(0, lineIdx / 3);
+    
+    particles.rotation.y += 0.001;
+    particles.rotation.x += 0.0005;
+
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  });
+
+  animate();
+})();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_9 -->
+<div class="w-full max-w-6xl px-container-padding-mobile md:px-container-padding-desktop grid grid-cols-1 lg:grid-cols-2 gap-section-gap items-center mt-16 md:mt-0">
+<!-- Left Side: Illustration / Brand Context -->
+<div class="hidden lg:flex flex-col justify-center items-start">
+<div class="relative w-full aspect-square max-w-lg mx-auto">
+<!-- Radial Glow Behind Image -->
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
+<img alt="Smart Factory Isometric Illustration" class="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(107,216,203,0.2)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc6azQglNWfwGzyP6DwOJfxkXdCTdwh4-_L47nifSQ3ZriQjSkSqJ4Mriwn5KQAKWeBdmPRWprTlwP2Sdr6jhPgYLx3agG2TrYiH4CtI5bWSqyojSOzVcFK4Yj6Vs_2fl0P0MQ89BmpR0-UNP52wZQOWGNtbr_JiywMC4pvie56X2jV1oXAus1J6ABgE35UU-rR6Z5Itk3HB3qWZyL6d5IaXMlbv8E0drkwnUA_O1HXzaH1luodI8RIm5IY0iMqNInODNYLIL4t4U"/>
+</div>
+<div class="mt-gutter text-left max-w-md mx-auto">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-unit">Precision Control.</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">Initialize secure access to your industrial digital twin cluster. Monitor, optimize, and simulate operations in real-time.</p>
+</div>
+</div>
+<!-- Right Side: Login Form (Glassmorphic Card) -->
+<div class="w-full max-w-md mx-auto surface-glass rounded-xl p-8 relative">
+<!-- Inner Glow for Card -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-primary/40 blur-md rounded-full"></div>
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">System Login</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Authenticate to access cluster telemetry.</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-unit">
+<label class="font-label-mono text-label-mono text-secondary uppercase tracking-widest block" for="email">Operator Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="input-field w-full rounded-lg py-3 pl-10 pr-4 font-body-base text-body-base focus:ring-0" id="email" placeholder="admin@clustertwin.ai" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-unit">
+<div class="flex justify-between items-center">
+<label class="font-label-mono text-label-mono text-secondary uppercase tracking-widest block" for="password">Access Key</label>
+<a class="font-body-sm text-body-sm text-primary hover:text-primary-fixed transition-colors" href="#">Forgot key?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">key</span>
+<input class="input-field w-full rounded-lg py-3 pl-10 pr-10 font-body-base text-body-base focus:ring-0" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary focus:ring-offset-background" id="remember_me" name="remember_me" type="checkbox"/>
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember_me">
+                            Maintain active session
+                        </label>
+</div>
+<!-- Actions -->
+<div class="pt-2">
+<button class="btn-primary w-full rounded-lg py-3 font-label-mono text-label-mono uppercase tracking-widest font-bold flex justify-center items-center gap-2" type="submit">
+                            Initialize Connection
+                            <span class="material-symbols-outlined text-[18px]">login</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="relative py-4 flex items-center">
+<div class="flex-grow border-t border-outline-variant/30"></div>
+<span class="flex-shrink-0 mx-4 font-label-mono text-label-mono text-outline uppercase tracking-widest">or integrate via</span>
+<div class="flex-grow border-t border-outline-variant/30"></div>
+</div>
+<!-- Social Login -->
+<div>
+<button class="btn-secondary w-full rounded-lg py-3 font-body-sm text-body-sm flex justify-center items-center gap-3" type="button">
+<svg class="w-5 h-5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25C22.56 11.47 22.49 10.72 22.36 10H12V14.26H17.92C17.66 15.63 16.88 16.79 15.71 17.57V20.34H19.28C21.36 18.42 22.56 15.6 22.56 12.25Z" fill="#4285F4"></path>
+<path d="M12 23C14.97 23 17.46 22.02 19.28 20.34L15.71 17.57C14.72 18.23 13.47 18.63 12 18.63C9.15 18.63 6.74 16.71 5.88 14.14H2.21V16.98C4.01 20.55 7.71 23 12 23Z" fill="#34A853"></path>
+<path d="M5.88 14.14C5.66 13.48 5.54 12.76 5.54 12C5.54 11.24 5.66 10.52 5.88 9.86V7.02H2.21C1.47 8.5 1.05 10.19 1.05 12C1.05 13.81 1.47 15.5 2.21 16.98L5.88 14.14Z" fill="#FBBC05"></path>
+<path d="M12 5.38C13.62 5.38 15.07 5.94 16.21 7.03L19.36 3.88C17.46 2.11 14.97 1 12 1C7.71 1 4.01 3.45 2.21 7.02L5.88 9.86C6.74 7.29 9.15 5.38 12 5.38Z" fill="#EA4335"></path>
+</svg>
+                            Enterprise SSO Authentication
+                        </button>
+</div>
+</form>
+<div class="mt-8 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        No active credentials? 
+                        <a class="text-primary hover:text-primary-fixed transition-colors font-medium ml-1" href="#">Request Provisioning</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-gutter border-t border-outline-variant/20 z-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-container-padding-desktop gap-unit max-w-full mx-auto">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-secondary">© 2024 ClusterTwin AI. Industrial Precision Engineered.</span>
+<div class="flex gap-4">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary-fixed-dim underline-offset-4 hover:underline transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary-fixed-dim underline-offset-4 hover:underline transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary-fixed-dim underline-offset-4 hover:underline transition-opacity duration-200" href="#">Security Architecture</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary-fixed-dim underline-offset-4 hover:underline transition-opacity duration-200" href="#">Compliance</a>
+</div>
+</div>
+</footer>
+</body></html>

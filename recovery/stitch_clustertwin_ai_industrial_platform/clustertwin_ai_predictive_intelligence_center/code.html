@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Insights - ClusterTwin AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#003732",
+                        "secondary-container": "#0566d9",
+                        "on-tertiary-container": "#4f1700",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#6bd8cb",
+                        "error-container": "#93000a",
+                        "primary": "#6bd8cb",
+                        "on-tertiary-fixed-variant": "#773215",
+                        "on-primary-container": "#00302b",
+                        "on-primary-fixed-variant": "#005049",
+                        "on-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-error": "#690005",
+                        "surface-dim": "#0b1326",
+                        "surface-container-high": "#222a3d",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb59a",
+                        "secondary": "#adc6ff",
+                        "primary-container": "#29a195",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-primary-fixed": "#00201d",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "outline": "#879391",
+                        "error": "#ffb4ab",
+                        "on-background": "#dae2fd",
+                        "on-tertiary-fixed": "#370e00",
+                        "on-surface-variant": "#bcc9c6",
+                        "on-tertiary": "#591c02",
+                        "background": "#0b1326",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-variant": "#2d3449",
+                        "on-secondary-fixed-variant": "#004395",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "surface": "#0b1326",
+                        "on-secondary-container": "#e6ecff",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-lowest": "#060e20",
+                        "surface-container": "#171f33",
+                        "surface-bright": "#31394d",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "inverse-primary": "#006a61",
+                        "primary-fixed": "#89f5e7",
+                        "tertiary-container": "#d27956",
+                        "outline-variant": "#3d4947",
+                        "on-secondary": "#002e6a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "64px",
+                        "container-padding-mobile": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-padding-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-mono": ["JetBrains Mono"],
+                        "display-lg": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-base": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .surface-glass {
+            background: rgba(34, 42, 61, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .border-glow {
+            border: 1px solid rgba(107, 216, 203, 0.3);
+            box-shadow: inset 0 0 10px rgba(107, 216, 203, 0.1);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #6bd8cb 0%, #29a195 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #dae2fd 0%, #89f5e7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 12px rgba(107, 216, 203, 0.5);
+        }
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(107, 216, 203, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(107, 216, 203, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(107, 216, 203, 0); }
+        }
+        
+        /* Dashboard Layout Variables */
+        :root {
+            --sidebar-width: 5rem;
+            --sidebar-width-expanded: 16rem;
+            --topbar-height: 4rem;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen overflow-x-hidden font-body-base selection:bg-primary selection:text-on-primary relative">
+<!-- Background Gradient Sub-surface Level 1 -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-primary-container/10 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-container/10 blur-[100px]"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop h-16 bg-surface-dim/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hidden md:flex">
+<div class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter">
+            Industrial OS
+        </div>
+<div class="flex items-center gap-gutter">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer active:scale-95" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 bottom-0 z-40 flex flex-col py-4 overflow-hidden bg-surface-container-low/60 backdrop-blur-2xl border-r border-white/5 shadow-2xl shadow-primary/5 docked h-full w-20 hover:w-64 transition-all duration-500 ease-in-out group hidden md:flex">
+<div class="px-6 mb-8 group-hover:opacity-100 opacity-0 transition-opacity duration-300 whitespace-nowrap overflow-hidden">
+<h2 class="font-headline-md text-headline-md text-on-surface truncate">Cluster Alpha</h2>
+<p class="font-label-mono text-label-mono text-primary truncate">Active Ops</p>
+</div>
+<nav class="flex-1 flex flex-col gap-2 w-full px-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:bg-surface-container-highest/50 hover:text-on-surface group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:bg-surface-container-highest/50 hover:text-on-surface group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Digital Twins</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:bg-surface-container-highest/50 hover:text-on-surface group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="insights">insights</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Analytics</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-primary/20 text-primary border-r-4 border-primary group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="psychology">psychology</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">AI Insights</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:bg-surface-container-highest/50 hover:text-on-surface group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="conveyor_belt">conveyor_belt</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Fleet</span>
+</a>
+</nav>
+<div class="mt-auto px-2 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:bg-surface-container-highest/50 hover:text-on-surface group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="help">help</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Support</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:bg-surface-container-highest/50 hover:text-on-surface group-hover:translate-x-1 transition-all duration-200 w-full" href="#">
+<span class="material-symbols-outlined min-w-[24px]" data-icon="terminal">terminal</span>
+<span class="font-label-mono text-label-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Logs</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-20 md:pt-24 pb-20 md:pb-12 px-container-padding-mobile md:px-container-padding-desktop md:ml-20 min-h-screen flex flex-col gap-section-gap transition-all duration-500">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-outline-variant/30 pb-6">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-gradient mb-2">AI Insights</h1>
+<div class="flex items-center gap-3">
+<span class="w-2.5 h-2.5 rounded-full bg-primary pulse-dot"></span>
+<span class="font-label-mono text-label-mono text-primary tracking-wider uppercase">System Status: Predictive Mode Active</span>
+</div>
+</div>
+<div class="surface-glass px-6 py-4 rounded-xl border-glow flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">AI Confidence Score</span>
+<span class="font-headline-md text-headline-md text-on-surface">98.4%</span>
+</div>
+<div class="w-12 h-12 rounded-full border-4 border-primary/20 border-t-primary flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary text-xl absolute" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Predictive Maintenance - Gauge (Span 4) -->
+<section class="surface-glass rounded-2xl p-6 md:col-span-4 flex flex-col relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[100px]" data-icon="speed">speed</span>
+</div>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="warning">warning</span>
+                    Failure Probability
+                </h3>
+<div class="flex-1 flex flex-col items-center justify-center mt-4">
+<!-- Fake SVG Gauge -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-high" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="283" stroke-dashoffset="0" stroke-width="8"></circle>
+<!-- 12% fill -->
+<circle class="text-tertiary" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="283" stroke-dashoffset="249" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center text-center">
+<span class="font-display-lg text-display-lg text-tertiary">12%</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant mt-1">Risk Level</span>
+</div>
+</div>
+<div class="mt-6 w-full bg-surface-container px-4 py-3 rounded-lg border border-outline-variant/30 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">Target: CNC Alpha</span>
+<span class="font-label-mono text-label-mono text-tertiary bg-tertiary/10 px-2 py-1 rounded">Elevated</span>
+</div>
+</div>
+</section>
+<!-- Remaining Useful Life (Span 8) -->
+<section class="surface-glass rounded-2xl p-6 md:col-span-8 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="hourglass_bottom">hourglass_bottom</span>
+                        Remaining Useful Life (RUL)
+                    </h3>
+<button class="text-primary hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- RUL Item 1 -->
+<div class="bg-surface-container/50 p-4 rounded-xl border border-white/5 hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div>
+<h4 class="font-body-base text-body-base font-semibold">Extruder Beta</h4>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">ID: EX-B-902</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-primary">342 h</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-3">
+<div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- RUL Item 2 -->
+<div class="bg-surface-container/50 p-4 rounded-xl border border-white/5 hover:border-tertiary/30 transition-colors">
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="settings_b_roll">settings_b_roll</span>
+</div>
+<div>
+<h4 class="font-body-base text-body-base font-semibold">CNC Alpha</h4>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">ID: CNC-A-104</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-tertiary">48 h</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-3">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Explainable AI (XAI) Panel - Root Cause (Span 6) -->
+<section class="surface-glass rounded-2xl p-6 md:col-span-6 border-glow relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="psychology_alt">psychology_alt</span>
+                    Root Cause Analysis
+                </h3>
+<div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/50 relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary rounded-l-xl"></div>
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-tertiary mt-1" data-icon="troubleshoot">troubleshoot</span>
+<div>
+<h4 class="font-body-base text-body-base font-semibold mb-1">Anomaly Detected: Extruder Beta</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AI has identified concurrent anomalies leading to an elevated failure risk within the next 48 hours.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mt-4">
+<span class="px-3 py-1.5 rounded-lg bg-surface-container-highest border border-outline-variant font-label-mono text-label-mono text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-error" data-icon="vibration">vibration</span>
+                            Vibration Spike (+4.2g)
+                        </span>
+<span class="px-3 py-1.5 rounded-lg bg-surface-container-highest border border-outline-variant font-label-mono text-label-mono text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="thermostat">thermostat</span>
+                            Thermal Anomaly (+12°C)
+                        </span>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-3">
+<h5 class="font-label-mono text-label-mono text-on-surface-variant uppercase">AI Recommendation</h5>
+<div class="bg-primary/10 border border-primary/30 p-4 rounded-xl flex justify-between items-center">
+<span class="font-body-sm text-body-sm">Adjust feed rate by -15% to stabilize thermal load.</span>
+<button class="primary-gradient text-on-primary font-label-mono text-label-mono px-4 py-2 rounded-lg glow-hover transition-all flex items-center gap-2">
+                            Apply Optimization
+                        </button>
+</div>
+</div>
+</section>
+<!-- Resource Optimization (Span 6) -->
+<section class="surface-glass rounded-2xl p-6 md:col-span-6 flex flex-col">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="eco">eco</span>
+                    Resource Optimization Target
+                </h3>
+<div class="flex-1 flex flex-col gap-6 justify-center">
+<!-- Energy -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="bolt">bolt</span>
+                                Energy Efficiency
+                            </span>
+<span class="font-label-mono text-label-mono text-primary">84% / 90%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden border border-white/5">
+<div class="bg-primary h-full rounded-full relative" style="width: 84%">
+<div class="absolute inset-0 bg-white/20 w-full animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+<!-- Carbon -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="co2">co2</span>
+                                Carbon Footprint Reduction
+                            </span>
+<span class="font-label-mono text-label-mono text-secondary">62% / 75%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden border border-white/5">
+<div class="bg-secondary h-full rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Machine Health Timeline (Span 12) -->
+<section class="surface-glass rounded-2xl p-6 md:col-span-12">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="timeline">timeline</span>
+                    Machine Health Timeline (CNC Alpha)
+                </h3>
+<div class="h-48 w-full relative flex items-end pt-8 pb-4">
+<!-- Fake Graph Grid -->
+<div class="absolute inset-0 border-b border-l border-outline-variant/30 ml-8 mb-4">
+<div class="absolute top-1/4 w-full border-t border-outline-variant/10 border-dashed"></div>
+<div class="absolute top-2/4 w-full border-t border-outline-variant/10 border-dashed"></div>
+<div class="absolute top-3/4 w-full border-t border-outline-variant/10 border-dashed"></div>
+</div>
+<!-- Y Axis Labels -->
+<div class="absolute left-0 top-0 bottom-4 w-8 flex flex-col justify-between text-[10px] text-on-surface-variant font-label-mono pb-2">
+<span>100</span>
+<span>50</span>
+<span>0</span>
+</div>
+<!-- Fake Graph Path & Area -->
+<div class="ml-8 w-full h-full relative" style="background: linear-gradient(180deg, rgba(107, 216, 203, 0.2) 0%, rgba(107, 216, 203, 0) 100%); clip-path: polygon(0 10%, 20% 15%, 40% 12%, 60% 40%, 80% 85%, 100% 95%, 100% 100%, 0 100%);"></div>
+<svg class="absolute inset-0 ml-8 w-[calc(100%-2rem)] h-[calc(100%-1rem)] pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,10 L20,15 L40,12 L60,40 L80,85 L100,95" fill="none" stroke="#6bd8cb" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Prediction zone dashed line -->
+<path d="M60,40 L80,85 L100,95" fill="none" stroke="#ffb59a" stroke-dasharray="4,4" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+<!-- X Axis Labels -->
+<div class="absolute bottom-0 left-8 right-0 flex justify-between text-[10px] text-on-surface-variant font-label-mono mt-1">
+<span>T-7d</span>
+<span>T-3d</span>
+<span>Today</span>
+<span class="text-tertiary">T+3d (Predicted)</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<style>
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</body></html>
