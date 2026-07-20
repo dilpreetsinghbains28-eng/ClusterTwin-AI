@@ -65,7 +65,7 @@ app.use(express.urlencoded({ extended: false }));
 // Sanitize data (NoSQL Injection)
 app.use(mongoSanitize());
 // Prevent XSS attacks
-// app.use(xss()); // Temporarily disabled: Incompatible with Express 5 req.query getter
+app.use(xss());
 // Prevent HTTP Param Pollution
 app.use(hpp());
 
