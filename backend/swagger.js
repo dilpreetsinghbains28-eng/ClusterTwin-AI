@@ -14,12 +14,8 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5000/api/v1',
-        description: 'Development Server'
-      },
-      {
-        url: 'https://api.clustertwin.com/v1',
-        description: 'Production Server'
+        url: process.env.BACKEND_URL || 'http://localhost:5000/api/v1',
+        description: process.env.NODE_ENV === 'production' ? 'Production Server' : 'Development Server'
       }
     ],
     components: {

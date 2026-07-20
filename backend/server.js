@@ -31,10 +31,16 @@ app.use(helmet.contentSecurityPolicy({
     imgSrc: ["'self'", "data:", "https:"],
   },
 }));
+const allowedOrigins = process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : ['http://localhost:5173', 'http://localhost:5174'];
+
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
-    callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
@@ -57,7 +63,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Sanitize data (NoSQL Injection)
-// app.use(mongoSanitize()); // Temporarily disabled: Incompatible with Express 5 req.query getter
+app.use(mongoSanitize());
 // Prevent XSS attacks
 // app.use(xss()); // Temporarily disabled: Incompatible with Express 5 req.query getter
 // Prevent HTTP Param Pollution
@@ -72,7 +78,14 @@ const server = http.createServer(app);
 // Configure Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: (origin, callback) => callback(null, true),
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST']
   }
 });
